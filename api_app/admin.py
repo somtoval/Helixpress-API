@@ -1,0 +1,21 @@
+from django.contrib import admin
+from .models import *
+
+admin.site.register(Journal)
+admin.site.register(Issue)
+admin.site.register(Volume)
+admin.site.register(Paper)
+admin.site.register(News)
+admin.site.register(HomeSlider)
+admin.site.register(Submission)
+admin.site.register(Newsletter)
+admin.site.register(About)
+admin.site.register(Contact)
+admin.site.register(Author)
+admin.site.register(Reviewer)
+admin.site.register(Editor)
+admin.site.register(OpenAccess)
+admin.site.register(EditorialProcess)
+admin.site.register(Ethics)
+admin.site.register(Charges)
+admin.site.register(VisibilityStatement)

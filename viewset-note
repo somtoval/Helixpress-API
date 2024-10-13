@@ -1,0 +1,73 @@
+The ModelViewSet covers both the list,update,create and delete
+ViewSet can only be used for views that have the same serializer and queryset
+We use Routers to map the viewsets to urls
+
+Django Viewsets and Routers are powerful tools for building RESTful APIs. Here's a comprehensive overview:
+
+Viewsets
+
+A Viewset is a class that handles a specific set of views for a model. It's a way to group related views together, making it easier to manage and maintain your API.
+
+Example:
+
+from rest_framework import viewsets
+from .models import Book
+from .serializers import BookSerializer
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+This Viewset handles CRUD operations for the Book model.
+
+Routers
+
+A Router is used to automatically generate URLs for your Viewsets. It's a way to connect your Viewsets to URLs without having to write URL patterns manually.
+
+Example:
+
+from rest_framework import routers
+from .viewsets import BookViewSet
+
+router = routers.DefaultRouter()
+router.register(r'books', BookViewSet)
+
+This Router registers the BookViewSet under the /books/ URL prefix.
+
+Example URLs
+
+With the above Viewset and Router, the following URLs are automatically generated:
+
+- GET /books/: List all books
+- POST /books/: Create a new book
+- GET /books/{id}/: Retrieve a book by ID
+- PUT /books/{id}/: Update a book by ID
+- DELETE /books/{id}/: Delete a book by ID
+
+Viewset Methods
+
+A Viewset can have the following methods:
+
+- list(): Handle GET requests for the list view
+- create(): Handle POST requests for the create view
+- retrieve(): Handle GET requests for the detail view
+- update(): Handle PUT requests for the update view
+- destroy(): Handle DELETE requests for the delete view
+
+Customizing Viewsets
+
+You can customize Viewsets by overriding methods or adding new ones. For example:
+
+class BookViewSet(viewsets.ModelViewSet):
+    def list(self, request):
+        # Custom list view logic
+        pass
+
+    @action(detail=True, methods=['post'])
+    def borrow(self, request, pk=None):
+        # Custom action to borrow a book
+        pass
+
+This Viewset has a custom list() method and a custom borrow() action.
+
+I hope this helps! Let me know if you have any questions or need further examples.
